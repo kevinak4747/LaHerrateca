@@ -1,8 +1,10 @@
--- MySQL dump 10.13  Distrib 8.0.41, for Win64 (x86_64)
+CREATE DATABASE  IF NOT EXISTS `laherrateca` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `laherrateca`;
+-- MySQL dump 10.13  Distrib 8.0.43, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: laherrateca
+-- Host: localhost    Database: laherrateca
 -- ------------------------------------------------------
--- Server version	8.4.3
+-- Server version	5.5.16-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,9 +26,9 @@ DROP TABLE IF EXISTS `contenedor`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `contenedor` (
   `codigocontenedor` varchar(20) NOT NULL,
-  `capacidadcontenedor` int NOT NULL,
+  `capacidadcontenedor` int(11) NOT NULL,
   PRIMARY KEY (`codigocontenedor`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,7 +53,7 @@ CREATE TABLE `herramienta` (
   `codigoherramienta` varchar(20) NOT NULL,
   `issmall` bit(1) NOT NULL,
   PRIMARY KEY (`codigoherramienta`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,13 +76,13 @@ DROP TABLE IF EXISTS `inventario`;
 CREATE TABLE `inventario` (
   `codigoherramienta` varchar(20) NOT NULL,
   `codigocontenedor` varchar(20) NOT NULL,
-  `cantidaddeherramientas` int NOT NULL,
+  `cantidaddeherramientas` int(11) NOT NULL,
   PRIMARY KEY (`codigoherramienta`,`codigocontenedor`),
   KEY `codigoherramienta_idx` (`codigoherramienta`),
   KEY `codigocontenedor_idx` (`codigocontenedor`),
-  CONSTRAINT `codigocontenedor` FOREIGN KEY (`codigocontenedor`) REFERENCES `contenedor` (`codigocontenedor`) ON DELETE RESTRICT ON UPDATE CASCADE,
+  CONSTRAINT `codigocontenedor` FOREIGN KEY (`codigocontenedor`) REFERENCES `contenedor` (`codigocontenedor`) ON UPDATE CASCADE,
   CONSTRAINT `codigoherramienta` FOREIGN KEY (`codigoherramienta`) REFERENCES `herramienta` (`codigoherramienta`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,4 +103,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-09 19:02:31
+-- Dump completed on 2025-10-10 16:47:04
